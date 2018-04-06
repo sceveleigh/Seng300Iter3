@@ -21,7 +21,7 @@ public class JavaFileParser {
 	 * @throws IOException If an I/O error occurs while opening or reading the file
 	 */
 	public HashMap<String, int[]> parse(String[] names, String sourcePath) throws IOException {
-		parser = ASTParser.newParser(AST.JLS8);
+		parser = ASTParser.newParser(AST.JLS9);
 		TypeFinderVisitor typeFinder = new TypeFinderVisitor();
 		
 		
@@ -41,7 +41,7 @@ public class JavaFileParser {
 			
 			parser.setEnvironment(new String[] {}, new String[] { sourcePath }, null, true);
 			
-		
+			parser.setUnitName("");
 			
 			parser.setSource(names[i].toCharArray());
 			// Create the ast for the input file

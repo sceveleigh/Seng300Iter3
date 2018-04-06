@@ -51,10 +51,10 @@ public class JavaFilePathFinder {
 		
 		for (int i = 0; i < javaFiles.length ;  i++) {
 			String filePath = javaFiles[i].getAbsolutePath();	
-			String fileExtension = filePath.substring(filePath.lastIndexOf("."));
+			//String fileExtension = filePath.substring(filePath.lastIndexOf("."));			//Gave bugs, used filePath.endsWith() instead
 			
 			// read the  '.java' file into a string add the string to the list.
-	        if (fileExtension.equals(".java")) {
+	        if (filePath.endsWith(".java")) {
 	        	//System.out.println("here");
 	        	StringBuilder inputSource = new StringBuilder();
 	    		BufferedReader inputFile = Files.newBufferedReader(Paths.get(filePath), Charset.defaultCharset());
@@ -72,7 +72,7 @@ public class JavaFilePathFinder {
 				
 	           
 			// call the jar file method	
-	        } else if (fileExtension.equals(".jar")){
+	        } else if (filePath.endsWith(".jar")){
 	            readFromJar(filePath);
 	        	
 	    	} else if (javaFiles[i].isDirectory() == true) {  // Recursive call for directory parsing
