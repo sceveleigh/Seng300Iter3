@@ -27,7 +27,7 @@ public class ProjectMain {
 		hMapCount = backend.parse(fileNames, sourcePath);
 		
 		
-		 /* Display content using Iterator*/
+		 /* Display content using Iterator*//*
 	      Set set = hMapCount.entrySet();
 	      Iterator iterator = set.iterator();
 	      while(iterator.hasNext()) {
@@ -36,7 +36,7 @@ public class ProjectMain {
 	         int refs = hMapCount.get(mentry.getKey())[1];
 	         System.out.println(mentry.getKey() + " Declarations Found: " +decs + " References Found: " + refs );
 	     
-	      }
+	      }*/
 	      System.out.println("Number of Nested Types = " + TypeTracker.numberOfNested);
 	      System.out.println("Number of Local Types = " + TypeTracker.numberOfLocal);
 	      System.out.println("Number of Anonymous Types = " + TypeTracker.numberOfAnonymous);

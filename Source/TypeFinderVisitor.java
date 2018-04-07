@@ -163,6 +163,7 @@ public class TypeFinderVisitor extends ASTVisitor {
 				TypeTracker.numberOfAnonymous ++;
 			}
 			
+			/*
 			// Checks if the hash map contains node already
 			// If it does then add 1 to its declarations 
 			if (hMap.containsKey(node.getName().toString())){
@@ -173,7 +174,7 @@ public class TypeFinderVisitor extends ASTVisitor {
 			}else{
 				int[] tempArray = {1,0};
 				hMap.put(node.getName().toString(), tempArray);
-			}
+			}*/
 
 			return true;
 		}
@@ -276,30 +277,32 @@ public class TypeFinderVisitor extends ASTVisitor {
 		
 	
 		public boolean visit(AnonymousClassDeclaration node) {
-			if (node.resolveBinding().isNested()) {
-				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getKey() + ") is nested");
-				TypeTracker.numberOfNested ++;
-			}
-			if (node.resolveBinding().isLocal()) {
-				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getKey() + ") is local");
-				TypeTracker.numberOfLocal ++;
-			}
-			if (node.resolveBinding().isAnonymous()) {
-				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getKey() + ") is anonymous");
-				TypeTracker.numberOfAnonymous ++;
-			}
-			
-			// Checks if the hash map contains node already
-			// If it does then add 1 to its references
-			if (hMap.containsKey(node.resolveBinding().getKey())){
+			if (node.resolveBinding() != null) {
+				if (node.resolveBinding().isNested()) {
+					System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getKey() + ") is nested");
+					TypeTracker.numberOfNested ++;
+				}
+				if (node.resolveBinding().isLocal()) {
+					System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getKey() + ") is local");
+					TypeTracker.numberOfLocal ++;
+				}
+				if (node.resolveBinding().isAnonymous()) {
+					System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getKey() + ") is anonymous");
+					TypeTracker.numberOfAnonymous ++;
+				}
 				
-				int[] item = hMap.get(node.resolveBinding().getKey());
-				item[1]++;
+				// Checks if the hash map contains node already
+				// If it does then add 1 to its references
+				if (hMap.containsKey(node.resolveBinding().getKey())){
+					
+					int[] item = hMap.get(node.resolveBinding().getKey());
+					item[1]++;
 				
-			// If not then add it to the hash map with 1 declaration					
-			}else{
-				int[] tempArray = {1,0};
-				hMap.put(node.resolveBinding().getKey(), tempArray);
+					// If not then add it to the hash map with 1 declaration					
+				}else{
+					int[] tempArray = {1,0};
+					hMap.put(node.resolveBinding().getKey(), tempArray);
+				}
 			}
 			
 			return true;
