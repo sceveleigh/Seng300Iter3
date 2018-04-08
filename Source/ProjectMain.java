@@ -40,6 +40,8 @@ public class ProjectMain {
 	      System.out.println("Number of Nested Types = " + TypeTracker.numberOfNested);
 	      System.out.println("Number of Local Types = " + TypeTracker.numberOfLocal);
 	      System.out.println("Number of Anonymous Types = " + TypeTracker.numberOfAnonymous);
+	      System.out.println("Number of Other Types = " + TypeTracker.numberOfOther);
+
 	}
 	
 
