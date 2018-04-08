@@ -29,20 +29,22 @@ public class TypeFinderVisitor extends ASTVisitor {
 		
 		
 		public boolean visit(TypeDeclaration node) {
-			if (node.resolveBinding().isNested()) {
-				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is nested");
-				TypeTracker.numberOfNested ++;
-			}
-			if (node.resolveBinding().isLocal()) {
-				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is local");
-				TypeTracker.numberOfLocal ++;
-			}
 			if (node.resolveBinding().isAnonymous()) {
 				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is anonymous");
 				TypeTracker.numberOfAnonymous ++;
 			}
 			
+			else if (node.resolveBinding().isLocal()) {
+				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is local");
+				TypeTracker.numberOfLocal ++;
+			}
+			else if (node.resolveBinding().isNested()) {
+				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is nested");
+				TypeTracker.numberOfNested ++;
+			}
+			else TypeTracker.numberOfOther ++;
 			
+			/*
 			// Checks if the hash map contains node already
 			 // If it does then add 1 to its declarations
 			if (hMap.containsKey(node.toString())){
@@ -54,6 +56,7 @@ public class TypeFinderVisitor extends ASTVisitor {
 				int[] tempArray = {1,0};
 				hMap.put(node.getName().toString(), tempArray);
 			}
+			*/
 			
 			return true;
 		}
@@ -117,20 +120,22 @@ public class TypeFinderVisitor extends ASTVisitor {
 		
 		
 		public boolean visit(AnnotationTypeDeclaration node) {
-			if (node.resolveBinding().isNested()) {
-				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is nested");
-				TypeTracker.numberOfNested ++;
-			}
-			if (node.resolveBinding().isLocal()) {
-				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is local");
-				TypeTracker.numberOfLocal ++;
-			}
 			if (node.resolveBinding().isAnonymous()) {
 				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is anonymous");
 				TypeTracker.numberOfAnonymous ++;
 			}
 			
+			else if (node.resolveBinding().isLocal()) {
+				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is local");
+				TypeTracker.numberOfLocal ++;
+			}
+			else if (node.resolveBinding().isNested()) {
+				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is nested");
+				TypeTracker.numberOfNested ++;
+			}
+			else TypeTracker.numberOfOther ++;
 			
+			/*
 			// Checks if the hash map contains node already
 			// If it does then add 1 to its declarations 
 			if (hMap.containsKey(node.toString())){
@@ -141,7 +146,7 @@ public class TypeFinderVisitor extends ASTVisitor {
 			}else{
 				int[] tempArray = {1,0};
 				hMap.put(node.getName().toString(), tempArray);
-			}
+			}*/
 
 			return true;
 		}
@@ -150,18 +155,20 @@ public class TypeFinderVisitor extends ASTVisitor {
 		
 		
 		public boolean visit(EnumDeclaration node) {
-			if (node.resolveBinding().isNested()) {
-				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is nested");
-				TypeTracker.numberOfNested ++;
-			}
-			if (node.resolveBinding().isLocal()) {
-				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is local");
-				TypeTracker.numberOfLocal ++;
-			}
 			if (node.resolveBinding().isAnonymous()) {
 				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is anonymous");
 				TypeTracker.numberOfAnonymous ++;
 			}
+			
+			else if (node.resolveBinding().isLocal()) {
+				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is local");
+				TypeTracker.numberOfLocal ++;
+			}
+			else if (node.resolveBinding().isNested()) {
+				System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is nested");
+				TypeTracker.numberOfNested ++;
+			}
+			else TypeTracker.numberOfOther ++;
 			
 			/*
 			// Checks if the hash map contains node already
@@ -196,7 +203,7 @@ public class TypeFinderVisitor extends ASTVisitor {
 			return true;
 		}*/
 		
-		
+		/*
 		public boolean visit(SimpleType node) {
 			
 			// Checks if the hash map contains node already
@@ -213,7 +220,7 @@ public class TypeFinderVisitor extends ASTVisitor {
 			}
 			return true;
 		}
-		
+		*/
 		
 		
 		/*
@@ -278,19 +285,21 @@ public class TypeFinderVisitor extends ASTVisitor {
 	
 		public boolean visit(AnonymousClassDeclaration node) {
 			if (node.resolveBinding() != null) {
-				if (node.resolveBinding().isNested()) {
-					System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getKey() + ") is nested");
-					TypeTracker.numberOfNested ++;
-				}
-				if (node.resolveBinding().isLocal()) {
-					System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getKey() + ") is local");
-					TypeTracker.numberOfLocal ++;
-				}
 				if (node.resolveBinding().isAnonymous()) {
-					System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getKey() + ") is anonymous");
+					System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is anonymous");
 					TypeTracker.numberOfAnonymous ++;
 				}
 				
+				else if (node.resolveBinding().isLocal()) {
+					System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is local");
+					TypeTracker.numberOfLocal ++;
+				}
+				else if (node.resolveBinding().isNested()) {
+					System.out.println(node.resolveBinding().getName() + " (" + node.resolveBinding().getQualifiedName() + ") is nested");
+					TypeTracker.numberOfNested ++;
+				}
+				else TypeTracker.numberOfOther ++;
+				/*
 				// Checks if the hash map contains node already
 				// If it does then add 1 to its references
 				if (hMap.containsKey(node.resolveBinding().getKey())){
@@ -302,7 +311,7 @@ public class TypeFinderVisitor extends ASTVisitor {
 				}else{
 					int[] tempArray = {1,0};
 					hMap.put(node.resolveBinding().getKey(), tempArray);
-				}
+				}*/
 			}
 			
 			return true;
